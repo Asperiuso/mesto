@@ -10,7 +10,8 @@
 HTML, CSS, БЭМ, JS
 
 **Сайт на GitHub Pages**
-https://asperiuso.github.io/mesto/
+
+* https://asperiuso.github.io/mesto/
 
 **Figma**
 
