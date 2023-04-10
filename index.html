@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+</head>
+
+<body class="root">
+  <header class="header">
+    <div class="header__logo">
+    </div>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" src="./images/avatar1.jpg" alt="аватар профиля">
+      </div>
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" type="button"></button>
+        <p class="profile__profession">Исследователь океана</p>
+      </div>
+      <button class="profile__add-button" type="button"></button>
+    </section>
+    <section class="area">
+      <article class="element">
+        <img class="element__image" src="./images/cars.jpg" alt="Свело Олдскулы при виде этих машин">
+        <div class="element__info">
+          <h2 class="element__title">Легендарные авто</h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/freedom-place.jpg" alt="Море">
+        <div class="element__info">
+          <h2 class="element__title">Море</h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/asian-b.jpg" alt="Азиатский город">
+        <div class="element__info">
+          <h2 class="element__title">Городской шарм</h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/nice-a.jpg" alt="Архитектура">
+        <div class="element__info">
+          <h2 class="element__title">Архитектура</h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/water-d.jpg" alt="Водопад">
+        <div class="element__info">
+          <h2 class="element__title">Водопад</h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/work-s.jpg" alt="Рабочая зона">
+        <div class="element__info">
+          <h2 class="element__title">Рабочая зона</h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__author">&copy; 2023 Andrew Strotsky</p>
+  </footer>
+
+  <div class="popup">
+    <div class="popup__content">
+      <button class="popup__close-button" type="button"></button>
+      <div class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form class="popup__input" novalidate>
+          <label class="popup__label">
+            <input class="popup__input-item popup__input-item_profile_name" type="text" placeholder="Имя" minlength="2"
+              maxlength="50">
+          </label>
+          <label class="popup__label">
+            <input class="popup__input-item popup__input-item_profile_profission" type="text" placeholder="О себе"
+              minlength="1" maxlength="300">
+          </label>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="./pages/index.js"></script>
+</body>
+
+</html>
