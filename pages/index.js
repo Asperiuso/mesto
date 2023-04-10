@@ -1,14 +1,14 @@
-const openPopupEditBtn = document.querySelector('.profile__edit-button');
-const popup  = document.querySelector('.popup');
-const popupCloseBtn = document.querySelector('.popup__close-button');
+let openPopupEditBtn = document.querySelector('.profile__edit-button');
+let popup = document.querySelector('.popup');
+let popupCloseBtn = document.querySelector('.popup__close-button');
 
 function openPopup() {
   popup.classList.add('popup_opened');
 }
 
 function closePopup(evt) {
-  const isOverlay = evt.target.classList.contains('popup');
-  const isCloseBtn = evt.target.classList.contains('popup__close-button');
+  let isOverlay = evt.target.classList.contains('popup');
+  let isCloseBtn = evt.target.classList.contains('popup__close-button');
 
   if (isOverlay || isCloseBtn) {
     popup.classList.remove('popup_opened')
@@ -18,8 +18,12 @@ function closePopup(evt) {
 openPopupEditBtn.addEventListener('click', openPopup);
 popup.addEventListener('click', closePopup);
 
-const getProfileName = document.querySelector('.profile__name').textContent;
-const getProfileProfession = document.querySelector('.profile__profession').textContent;
+let getProfileName = document.querySelector('.profile__name').textContent;
+let getProfileProfession = document.querySelector('.profile__profession').textContent;
 
-const Name = document.querySelector('.popup__input-item_profile_name').value = getProfileName;
-const Profession = document.querySelector('.popup__input-item_profile_profission').value = getProfileProfession;
+let Name = document.querySelector('.popup__input-item_profile_name').value = getProfileName;
+let Profession = document.querySelector('.popup__input-item_profile_profission').value = getProfileProfession;
+
+
+
+
