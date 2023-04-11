@@ -15,9 +15,7 @@
   </header>
   <main class="content">
     <section class="profile">
-      <div class="profile__avatar-container">
-        <img class="profile__avatar" src="./images/avatar1.jpg" alt="аватар профиля">
-      </div>
+      <img class="profile__avatar" src="./images/avatar1.jpg" alt="аватар профиля">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button"></button>
@@ -75,23 +73,22 @@
   </footer>
 
   <div class="popup">
-    <div class="popup__content">
+    <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
-      <div class="popup__container">
-        <h2 class="popup__heading">Редактировать профиль</h2>
-        <form class="popup__input" novalidate>
-          <label class="popup__label">
-            <input class="popup__input-item popup__input-item_profile_name" type="text" placeholder="Имя" minlength="2"
-              maxlength="50">
-          </label>
-          <label class="popup__label">
-            <input class="popup__input-item popup__input-item_profile_profission" type="text" placeholder="О себе"
-              minlength="1" maxlength="300">
-          </label>
-          <button class="popup__save-button" type="submit">Сохранить</button>
-        </form>
-      </div>
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="popup__input" novalidate>
+        <label class="popup__label">
+          <input class="popup__input-item popup__input-item_profile_name" type="text" placeholder="Имя" minlength="2"
+            maxlength="50">
+        </label>
+        <label class="popup__label">
+          <input class="popup__input-item popup__input-item_profile_profission" type="text" placeholder="О себе"
+            minlength="1" maxlength="300">
+        </label>
+        <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
     </div>
+  </div>
   </div>
   <script src="./scripts/index.js"></script>
 </body>
