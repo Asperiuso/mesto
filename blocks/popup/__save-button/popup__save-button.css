@@ -2,7 +2,7 @@
   padding: 0;
   margin-top: 45px;
   width: 238px;
-  max-height: 46px;
+  min-height: 46px;
   border: none;
   border-radius: 2px;
   background: #000;
@@ -22,7 +22,7 @@
   .popup__save-button {
     margin-top: 48px;
     width: 358px;
-    max-height: 50px;
+    min-height: 50px;
     font-size: 18px;
     line-height: 22px;
   }

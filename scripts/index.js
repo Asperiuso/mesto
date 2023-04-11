@@ -4,6 +4,13 @@ let popupCloseBtn = document.querySelector('.popup__close-button');
 
 function openPopup() {
   popup.classList.add('popup_opened');
+  // Находим значение Имени и Профессии на странице 
+let getProfileName = document.querySelector('.profile__name').textContent;
+let getProfileProfession = document.querySelector('.profile__profession').textContent;
+
+// Находим поля формы в DOM заменяя их значениями Имени и Профессии
+let nameInput = document.querySelector('.popup__input-item_profile_name').value = getProfileName;
+let jobInput = document.querySelector('.popup__input-item_profile_profission').value = getProfileProfession;
 }
 
 function closePopup(evt) {
@@ -23,15 +30,6 @@ popup.addEventListener('click', closePopup);
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__input');
 
-// Находим значение Имени и Профессии на странице 
-let getProfileName = document.querySelector('.profile__name').textContent;
-let getProfileProfession = document.querySelector('.profile__profession').textContent;
-
-// Находим поля формы в DOM заменяя их значениями Имени и Профессии
-let nameInput = document.querySelector('.popup__input-item_profile_name').value = getProfileName;
-let jobInput = document.querySelector('.popup__input-item_profile_profission').value = getProfileProfession;
-console.log(nameInput);
-
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function handleFormSubmit(evt) {
@@ -45,6 +43,8 @@ function handleFormSubmit(evt) {
   // Вставим новые значения с помощью textContent
   putProfileName.textContent = nameInput;  
   putProfileProfession.textContent = jobInput;
+  // Вроде все работало без вызова этой функции, но добавил ее по наставлению ревьюера
+  closePopup();
 }
 
 // Прикрепляем обработчик к форме:
