@@ -1,9 +1,9 @@
-let openPopupEditBtn = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let popupCloseBtn = document.querySelector('.popup__close-button');
+const openPopupEditBtn = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
+const popupCloseBtn = document.querySelector('.popup__close-button');
 // Находим значение Имени и Профессии на странице 
-let getProfileName = document.querySelector('.profile__name');
-let getProfileProfession = document.querySelector('.profile__profession');
+const getProfileName = document.querySelector('.profile__name');
+const getProfileProfession = document.querySelector('.profile__profession');
 // Находим поля формы в DOM заменяя их значениями Имени и Профессии
 let nameInput = document.querySelector('.popup__input-item_profile_name');
 let jobInput = document.querySelector('.popup__input-item_profile_profission');
