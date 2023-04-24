@@ -23,60 +23,17 @@
       </div>
       <button class="profile__add-button" type="button"></button>
     </section>
-    <section class="area">
-      <article class="element">
-        <img class="element__image" src="./images/cars.jpg" alt="Свело Олдскулы при виде этих машин">
-        <div class="element__info">
-          <h2 class="element__title">Легендарные авто</h2>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/freedom-place.jpg" alt="Море">
-        <div class="element__info">
-          <h2 class="element__title">Море</h2>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/asian-b.jpg" alt="Азиатский город">
-        <div class="element__info">
-          <h2 class="element__title">Городской шарм</h2>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/nice-a.jpg" alt="Архитектура">
-        <div class="element__info">
-          <h2 class="element__title">Архитектура</h2>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/water-d.jpg" alt="Водопад">
-        <div class="element__info">
-          <h2 class="element__title">Водопад</h2>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/work-s.jpg" alt="Рабочая зона">
-        <div class="element__info">
-          <h2 class="element__title">Рабочая зона</h2>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </article>
-    </section>
+    <section class="area"></section>
   </main>
   <footer class="footer">
     <p class="footer__author">&copy; 2023 Andrew Strotsky</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup-edit">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h3 class="popup__heading">Редактировать профиль</h3>
-      <form class="popup__input" name="editProfile" novalidate>
+      <form class="popup__input" id="editProfile" novalidate>
         <label class="popup__label">
           <input class="popup__input-item popup__input-item_profile_name" name="Name" type="text" placeholder="Имя" minlength="2"
             maxlength="50">
@@ -89,7 +46,43 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup-add">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <h3 class="popup__heading">Новое место</h3>
+      <form class="popup__input" id="editCard" novalidate>
+        <label class="popup__label">
+          <input class="popup__input-item popup__input-item_card_title" name="Card_title" type="text" placeholder="Название" minlength="2"
+            maxlength="100">
+        </label>
+        <label class="popup__label">
+          <input class="popup__input-item popup__input-item_card_link" name="Card_link" type="text" placeholder="Ссылка на картинку"
+            minlength="1">
+        </label>
+        <button class="popup__save-button" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup-card">
+    <div class="popup__content">
+        <button class="popup__close-button" type="button"></button>
+        <img class="popup__card-image" src="" alt="">
+        <p class="popup__card-title"></p>
+    </div>
+</div>
+
+  <template id="card-template">
+    <article class="card">
+      <button class="card__del-button" type="button"></button>
+      <img class="card__image" src="" alt="">
+        <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button class="card__like-button" type="button"></button>
+      </div>
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
-
 </html>
