@@ -36,11 +36,11 @@
       <form class="popup__input" id="editProfile" novalidate>
         <label class="popup__label">
           <input class="popup__input-item popup__input-item_profile_name" name="Name" type="text" placeholder="Имя" minlength="2"
-            maxlength="50">
+            maxlength="50" required>
         </label>
         <label class="popup__label">
           <input class="popup__input-item popup__input-item_profile_profission" name="Profession" type="text" placeholder="О себе"
-            minlength="1" maxlength="300">
+            minlength="1" maxlength="300" required>
         </label>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -54,11 +54,11 @@
       <form class="popup__input" id="editCard" novalidate>
         <label class="popup__label">
           <input class="popup__input-item popup__input-item_card_title" name="Card_title" type="text" placeholder="Название" minlength="2"
-            maxlength="100">
+            maxlength="100" required>
         </label>
         <label class="popup__label">
           <input class="popup__input-item popup__input-item_card_link" name="Card_link" type="text" placeholder="Ссылка на картинку"
-            minlength="1">
+            minlength="1" required>
         </label>
         <button class="popup__save-button" type="submit">Создать</button>
       </form>
