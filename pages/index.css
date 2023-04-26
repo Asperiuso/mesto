@@ -39,5 +39,7 @@
 @import url(../blocks/popup/__card-title/popup__place-title.css);
 @import url(../blocks/popup/__content/popup__content.css);
 
+@import url(../blocks/popup-card/popup-card.css);
+
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
