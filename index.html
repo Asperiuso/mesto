@@ -35,12 +35,16 @@
       <h3 class="popup__heading">Редактировать профиль</h3>
       <form class="popup__input" id="editProfile" novalidate>
         <label class="popup__label">
-          <input class="popup__input-item popup__input-item_profile_name" name="Name" type="text" placeholder="Имя" minlength="2"
-            maxlength="50" required>
+          <input class="popup__input-item popup__input-item_profile_name" 
+            name="Name" type="text" placeholder="Имя"
+            minlength="2" maxlength="50" 
+            required>
         </label>
         <label class="popup__label">
-          <input class="popup__input-item popup__input-item_profile_profission" name="Profession" type="text" placeholder="О себе"
-            minlength="1" maxlength="300" required>
+          <input class="popup__input-item popup__input-item_profile_profission" 
+            name="Profession" type="text" placeholder="О себе" 
+            minlength="1" maxlength="300" 
+            required>
         </label>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -53,12 +57,16 @@
       <h3 class="popup__heading">Новое место</h3>
       <form class="popup__input" id="editCard" novalidate>
         <label class="popup__label">
-          <input class="popup__input-item popup__input-item_card_title" name="Card_title" type="text" placeholder="Название" minlength="2"
-            maxlength="100" required>
+          <input class="popup__input-item popup__input-item_card_title" 
+            id="input" name="Card_title" type="text" placeholder="Название"
+            minlength="2" maxlength="100" 
+            required>
         </label>
         <label class="popup__label">
-          <input class="popup__input-item popup__input-item_card_link" name="Card_link" type="text" placeholder="Ссылка на картинку"
-            minlength="1" required>
+          <input class="popup__input-item popup__input-item_card_link" 
+            id="input" name="Card_link" type="text" placeholder="Ссылка на картинку" 
+            minlength="1" 
+            required>
         </label>
         <button class="popup__save-button" type="submit">Создать</button>
       </form>
@@ -67,17 +75,17 @@
 
   <div class="popup popup-card">
     <div class="popup__content">
-        <button class="popup__close-button" type="button"></button>
-        <img class="popup__card-image" src="#" alt="">
-        <p class="popup__card-title"></p>
+      <button class="popup__close-button" type="button"></button>
+      <img class="popup__card-image" src="#" alt="">
+      <p class="popup__card-title"></p>
     </div>
-</div>
+  </div>
 
   <template id="card-template">
     <article class="card">
       <button class="card__del-button" type="button"></button>
       <img class="card__image" src="#" alt="">
-        <div class="card__info">
+      <div class="card__info">
         <h2 class="card__title"></h2>
         <button class="card__like-button" type="button"></button>
       </div>

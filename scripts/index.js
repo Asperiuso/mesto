@@ -102,4 +102,3 @@ btnAdd.addEventListener('click', function () {
   openPopup(popupAdd);
 });
 
-
