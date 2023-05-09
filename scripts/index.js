@@ -27,12 +27,14 @@ const popupsElement = Array.from(popups);
 
 //Функция закрытия попапа
 function closePopup(popups) {
-  popups.classList.remove('popup_opened')
+  popups.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupOnEsc);
 }
 
 // Функция открытия попапа
 function openPopup(popups) {
   popups.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEsc);
 }
 
 popupsElement.forEach(el => {
@@ -102,3 +104,10 @@ btnAdd.addEventListener('click', function () {
   openPopup(popupAdd);
 });
 
+//добавим функцию закрытия попапа на кнопку Esc
+const closePopupOnEsc = (evt) =>  {
+  if (evt.key === 'Escape') {
+      const popup = document.querySelector('.popup_opened');
+      closePopup(popup);
+  };
+};
