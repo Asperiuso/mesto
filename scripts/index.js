@@ -1,4 +1,6 @@
 import initialCards from './db.js';
+import { mestoSelectors } from './validate.js'
+import { revalidateForm } from './validate.js'
 
 // Находим значение Имени и Профессии на странице 
 const inputProfileName = document.querySelector('.profile__name');
@@ -15,15 +17,15 @@ const btnAdd = document.querySelector('.profile__add-button');
 const popupAdd = document.querySelector('.popup-add');
 const popupEdit = document.querySelector('.popup-edit');
 // Находим форму в DOM
-const formProfile = document.querySelector('#editProfile');
-const formCard = document.querySelector('#editCard');
-const area = document.querySelector('.area')
+const formProfile = document.forms['editProfile'];
+const formCard = document.forms['editCard'];
+const area = document.querySelector('.area');
 //Модальные константы
 const modalImg = popupInputCard.querySelector('img');
 const modalText = popupInputCard.querySelector('.popup__card-title');
 //Переменная попапа
 const popups = document.querySelectorAll('.popup');
-const popupsElement = Array.from(popups);
+const popupsList = Array.from(popups);
 
 //Функция закрытия попапа
 function closePopup(popups) {
@@ -37,7 +39,7 @@ function openPopup(popups) {
   document.addEventListener('keydown', closePopupOnEsc);
 }
 
-popupsElement.forEach(el => {
+popupsList.forEach(el => {
   el.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
       closePopup(el);
@@ -49,17 +51,19 @@ popupsElement.forEach(el => {
 function addCards(name, link) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  cardElement.querySelector('.card__image').src = link;
-  cardElement.querySelector('.card__image').alt = name;
+  const cardImg = cardElement.querySelector('.card__image');
+
+  cardImg.src = link;
+  cardImg.alt = name;
   cardElement.querySelector('.card__title').textContent = name;
-  cardElement.querySelector('.card__like-button').addEventListener('click', function (evt) {
+  cardElement.querySelector('.card__like-button').addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-button_active');
   });
-  cardElement.querySelector('.card__del-button').addEventListener('click', function (evt) {
+  cardElement.querySelector('.card__del-button').addEventListener('click', (evt) => {
     (evt.target.closest('.card')).remove();
   });
 
-  cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
+  cardImg.addEventListener('click', (evt) => {
     modalImg.src = evt.target.src;
     modalImg.alt = evt.target.alt;
     modalText.textContent = evt.target.alt;
@@ -67,11 +71,10 @@ function addCards(name, link) {
   });
 
   return cardElement;
-
 };
 
 initialCards.forEach(function (el) {
-  area.insertAdjacentElement('beforeend', addCards(el.name, el.link))
+  area.append(addCards(el.name, el.link));
 });
 
 // Обработчик «отправки» форм
@@ -87,20 +90,24 @@ formProfile.addEventListener('submit', submitFormEdit);
 // Обработчик для добавления карточек
 function submitFormAdd(evt) {
   evt.preventDefault();
-  area.insertAdjacentElement('afterbegin', addCards(titleInputCard.value, linkInputCard.value));
-  closePopup(popupAdd);
+  area.prepend(addCards(titleInputCard.value, linkInputCard.value));
+  titleInputCard.value = '';
+  linkInputCard.value = '';
+  closePopup(popupAdd); 
 }
+
 formCard.addEventListener('submit', submitFormAdd);
 
+//Добавим кнопкам проверку при каждом открытии
 btnEdit.addEventListener('click', function () {
   formInputName.value = inputProfileName.textContent;
   formInputJob.value = inputProfileProfession.textContent;
+  revalidateForm(formProfile, mestoSelectors);
   openPopup(popupEdit);
 });
 
 btnAdd.addEventListener('click', function () {
-  titleInputCard.value = '';
-  linkInputCard.value = '';
+  revalidateForm(formCard, mestoSelectors);
   openPopup(popupAdd);
 });
 

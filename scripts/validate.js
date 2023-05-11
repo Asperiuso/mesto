@@ -1,4 +1,4 @@
-const mestoSelectors = {
+export const mestoSelectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input-item',
   submitButtonSelector: '.popup__save-button',
@@ -6,10 +6,6 @@ const mestoSelectors = {
   inputErrorClass: 'popup__input-item_error',
   errorClass: 'popup__input-error-message_active'
 };
-
-const formList = Array.from(document.querySelectorAll(mestoSelectors.formSelector));
-// const inputList = Array.from(document.querySelectorAll(mestoSelectors.inputSelector));
-
 
 const showError = (inputEl, mestoSelectors, errorMessage) => {
   const errorElement = document.querySelector(`#${inputEl.id}-error`);
@@ -67,6 +63,7 @@ const toggleBtn = (inputList, btnEl, mestoSelectors) => {
 const setEventListeners = (formEl, mestoSelectors) => {
   const inputList = Array.from(formEl.querySelectorAll(mestoSelectors.inputSelector));
   const btnEl = formEl.querySelector(mestoSelectors.submitButtonSelector);
+  
   toggleBtn(inputList, btnEl, mestoSelectors);
   inputList.forEach(inputEl => {
     inputEl.addEventListener('input', () => {
@@ -76,29 +73,27 @@ const setEventListeners = (formEl, mestoSelectors) => {
   });
 };
 
-const revalidateForm = (formEl, mestoSelectors) => {
+export function revalidateForm(formEl, mestoSelectors)  {
   const inputList = Array.from(formEl.querySelectorAll(mestoSelectors.inputSelector));
   const btnEl = formEl.querySelector(mestoSelectors.submitButtonSelector);
+  
+  toggleBtn(inputList, btnEl, mestoSelectors);
+  
+  formEl.addEventListener('reset', () => {
+    inactiveSubmitBtn(btnEl, mestoSelectors)
+  });
+  
   inputList.forEach(inputEl => {
     hideError(inputEl, mestoSelectors);
   });
-  inactiveSubmitBtn(btnEl, mestoSelectors);
 };
 
 const enableValidation = (mestoSelectors) => {
+  const formList = Array.from(document.querySelectorAll(mestoSelectors.formSelector));
+
   formList.forEach(formEl => {
     setEventListeners(formEl, mestoSelectors);
   });
 };
-
-/*$('input').on('input invalid', function() {
-
-  if (this.validity.typeMismatch) {
-    this.setCustomValidity("Не соответствует типу")
-  }
-  if (this.validity.patternMismatch) {
-    this.setCustomValidity("Не соответствует паттерну")
-  }
-})*/
 
 enableValidation(mestoSelectors);
