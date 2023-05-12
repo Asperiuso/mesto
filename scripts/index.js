@@ -20,14 +20,15 @@ const popupEdit = document.querySelector('.popup-edit');
 const formProfile = document.forms['editProfile'];
 const formCard = document.forms['editCard'];
 const area = document.querySelector('.area');
-//Модальные константы
+// Модальные константы
 const modalImg = popupInputCard.querySelector('img');
 const modalText = popupInputCard.querySelector('.popup__card-title');
-//Переменная попапа
+// Переменная попапа
 const popups = document.querySelectorAll('.popup');
 const popupsList = Array.from(popups);
-
-//Функция закрытия попапа
+// Кнопка сохранения в форме изменения профиля
+const btnSaveP = formProfile.querySelector('.popup__save-button');
+// Функция закрытия попапа
 function closePopup(popups) {
   popups.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupOnEsc);
@@ -91,17 +92,21 @@ formProfile.addEventListener('submit', submitFormEdit);
 function submitFormAdd(evt) {
   evt.preventDefault();
   area.prepend(addCards(titleInputCard.value, linkInputCard.value));
-  titleInputCard.value = '';
-  linkInputCard.value = '';
-  closePopup(popupAdd); 
+  evt.target.reset();
+  closePopup(popupAdd);
 }
 
 formCard.addEventListener('submit', submitFormAdd);
 
+
+console.log(btnSaveP);
 //Добавим кнопкам проверку при каждом открытии
 btnEdit.addEventListener('click', function () {
   formInputName.value = inputProfileName.textContent;
   formInputJob.value = inputProfileProfession.textContent;
+// btnSaveP.classList.remove('popup__save-button_inactive');
+// btnSaveP.disabled = false;
+
   revalidateForm(formProfile, mestoSelectors);
   openPopup(popupEdit);
 });
@@ -112,9 +117,9 @@ btnAdd.addEventListener('click', function () {
 });
 
 //добавим функцию закрытия попапа на кнопку Esc
-const closePopupOnEsc = (evt) =>  {
+const closePopupOnEsc = (evt) => {
   if (evt.key === 'Escape') {
-      const popup = document.querySelector('.popup_opened');
-      closePopup(popup);
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
   };
 };

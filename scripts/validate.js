@@ -42,27 +42,32 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const inactiveSubmitBtn = (btnEl, { inactiveButtonClass }) => {
+
+const disableBtn = (btnEl, { inactiveButtonClass }) => {
   btnEl.classList.add(inactiveButtonClass);
   btnEl.disabled = true;
 };
 
-const activeSubmitBtn = (btnEl, { inactiveButtonClass }) => {
+const activateBtn = (btnEl, { inactiveButtonClass }) => {
   btnEl.classList.remove(inactiveButtonClass);
   btnEl.disabled = false;
 };
 
 const toggleBtn = (inputList, btnEl, mestoSelectors) => {
   if (hasInvalidInput(inputList)) {
-    inactiveSubmitBtn(btnEl, mestoSelectors);
+    disableBtn(btnEl, mestoSelectors);
   } else {
-    activeSubmitBtn(btnEl, mestoSelectors);
+    activateBtn(btnEl, mestoSelectors);
   };
 };
 
 const setEventListeners = (formEl, mestoSelectors) => {
   const inputList = Array.from(formEl.querySelectorAll(mestoSelectors.inputSelector));
   const btnEl = formEl.querySelector(mestoSelectors.submitButtonSelector);
+  
+  formEl.addEventListener('reset', () => {
+    disableBtn(btnEl, mestoSelectors)
+  });
   
   toggleBtn(inputList, btnEl, mestoSelectors);
   inputList.forEach(inputEl => {
@@ -77,12 +82,7 @@ export function revalidateForm(formEl, mestoSelectors)  {
   const inputList = Array.from(formEl.querySelectorAll(mestoSelectors.inputSelector));
   const btnEl = formEl.querySelector(mestoSelectors.submitButtonSelector);
   
-  toggleBtn(inputList, btnEl, mestoSelectors);
-  
-  formEl.addEventListener('reset', () => {
-    inactiveSubmitBtn(btnEl, mestoSelectors)
-  });
-  
+  toggleBtn(inputList, btnEl, mestoSelectors); 
   inputList.forEach(inputEl => {
     hideError(inputEl, mestoSelectors);
   });
