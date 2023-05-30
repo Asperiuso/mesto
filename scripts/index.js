@@ -49,7 +49,7 @@ popupsList.forEach(el => {
 });
 
 //Функция добавления элементов
-function addCards(name, link) {
+/*function addCards(name, link) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImg = cardElement.querySelector('.card__image');
@@ -72,7 +72,7 @@ function addCards(name, link) {
   });
 
   return cardElement;
-};
+};*/
 
 initialCards.forEach(function (el) {
   area.append(addCards(el.name, el.link));
