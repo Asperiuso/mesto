@@ -11,7 +11,6 @@ const mestoSelectors = {
   inputErrorClass: 'popup__input-item_error',
   errorClass: 'popup__input-error-message_active'
 };
-
 // Находим элементы на странице
 const inputProfileName = document.querySelector('.profile__name');
 const inputProfileProfession = document.querySelector('.profile__profession');
@@ -119,4 +118,3 @@ function closePopupOnEsc(evt) {
 
 // Включаем валидацию форм
 formValidator.enableValidation();
-

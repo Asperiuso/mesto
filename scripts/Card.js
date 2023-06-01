@@ -1,11 +1,10 @@
 export default class Card {
-  constructor(data, cardSelector, openPopup) {
+    constructor(data, cardSelector, openPopup) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._openPopup = openPopup;
   }
-
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
