@@ -5,6 +5,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._openPopup = openPopup;
   }
+  
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)

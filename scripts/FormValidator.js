@@ -2,6 +2,7 @@ export default class FormValidator {
   constructor(mestoSelectors) {
     this._mestoSelectors = mestoSelectors;
   }
+  
   _showError(inputEl) {
     const errorElement = document.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.add(this._mestoSelectors.inputErrorClass);

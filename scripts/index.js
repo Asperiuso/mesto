@@ -11,6 +11,7 @@ const mestoSelectors = {
   inputErrorClass: 'popup__input-item_error',
   errorClass: 'popup__input-error-message_active'
 };
+
 // Находим элементы на странице
 const inputProfileName = document.querySelector('.profile__name');
 const inputProfileProfession = document.querySelector('.profile__profession');
@@ -56,6 +57,19 @@ popupsList.forEach((el) => {
       closePopup(el);
     }
   });
+});
+
+// Заполнение значений полей 
+function fillProfileForm() {
+  formInputName.value = inputProfileName.textContent;
+  formInputJob.value = inputProfileProfession.textContent;
+}
+
+// Обработчик клика на кнопку редактирования профиля
+btnEdit.addEventListener('click', function () {
+  formValidator.enableValidation();
+  fillProfileForm();
+  openPopup(popupEdit);
 });
 
 // Обработчик «отправки» формы редактирования профиля
