@@ -18,10 +18,10 @@
       <img class="profile__avatar" src="./images/avatar1.jpg" alt="аватар профиля">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" type="button"></button>
+        <button class="profile__edit-button" type="button" aria-label="Edit Profile"></button>
         <p class="profile__profession">Исследователь океана</p>
       </div>
-      <button class="profile__add-button" type="button"></button>
+      <button class="profile__add-button" type="button" aria-label="Add Card"></button>
     </section>
     <section class="area"></section>
   </main>
@@ -31,7 +31,7 @@
 
   <div class="popup popup-edit">
     <div class="popup__container">
-      <button class="popup__close-button" type="button"></button>
+      <button class="popup__close-button" type="button" aria-label="Close popup"></button>
       <h3 class="popup__heading">Редактировать профиль</h3>
       <form class="popup__form" id="editProfile" name="editProfile" novalidate>
         <fieldset class="popup__input">
@@ -75,7 +75,7 @@
 
   <div class="popup popup-card">
     <div class="popup__content">
-      <button class="popup__close-button" type="button"></button>
+      <button class="popup__close-button" type="button" aria-label="Close"></button>
       <img class="popup__card-image" src="#" alt="">
       <p class="popup__card-title"></p>
     </div>
@@ -83,18 +83,15 @@
 
   <template id="card-template">
     <article class="card">
-      <button class="card__del-button" type="button"></button>
+      <button class="card__del-button" type="button" aria-label="Del Card"></button>
       <img class="card__image" src="#" alt="">
       <div class="card__info">
         <h2 class="card__title"></h2>
-        <button class="card__like-button" type="button"></button>
+        <button class="card__like-button" type="button" aria-label="Like Card"></button>
       </div>
     </article>
   </template>
   <script src="./scripts/index.js" type="module"></script>
-  <script src="./scripts/db.js" type="module"></script>
-  <script src="./scripts/FormValidator.js" type="module"></script>
-  <script src="./scripts/Card.js" type="module"></script>
 </body>
 
 </html>

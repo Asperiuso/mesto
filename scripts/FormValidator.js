@@ -1,96 +1,89 @@
 export default class FormValidator {
-  constructor(mestoSelectors) {
-    this._mestoSelectors = mestoSelectors;
+  constructor(validationConfig, formEl) {
+    this._validationConfig = validationConfig;
+    this._formEl = formEl;
+    this._inputList = Array.from(this._formEl.querySelectorAll(this._validationConfig.inputSelector));
+    this._btnEl = this._formEl.querySelector(this._validationConfig.submitButtonSelector);
   }
-  
+
   _showError(inputEl) {
-    const errorElement = document.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.add(this._mestoSelectors.inputErrorClass);
-    errorElement.classList.add(this._mestoSelectors.errorClass);
+    const errorElement = this._formEl.querySelector(`#${inputEl.id}-error`);
+    inputEl.classList.add(this._validationConfig.inputErrorClass);
+    errorElement.classList.add(this._validationConfig.errorClass);
     errorElement.textContent = inputEl.validationMessage;
   }
 
   _hideError(inputEl) {
-    const errorElement = document.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.remove(this._mestoSelectors.inputErrorClass);
-    errorElement.classList.remove(this._mestoSelectors.errorClass);
+    const errorElement = this._formEl.querySelector(`#${inputEl.id}-error`);
+    inputEl.classList.remove(this._validationConfig.inputErrorClass);
+    errorElement.classList.remove(this._validationConfig.errorClass);
     errorElement.textContent = '';
   }
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
       inputEl.setCustomValidity('');
-
+      /*Добавление записей валидации согласно макету
       if (inputEl.validity.valid) {
         inputEl.setCustomValidity('Вы пропустили это поле.');
       }
-
       if (inputEl.validity.typeMismatch) {
         inputEl.setCustomValidity('Введите адрес сайта.');
-      }
+      }*/
 
       this._showError(inputEl);
     } else {
       this._hideError(inputEl);
     }
+
   }
 
-  _hasInvalidInput(inputList) {
-    return inputList.some(inputEl => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputEl) => {
       return !inputEl.validity.valid;
     });
   }
 
-  _disableBtn(btnEl) {
-    btnEl.classList.add(this._mestoSelectors.inactiveButtonClass);
-    btnEl.disabled = true;
+  _disableBtn() {
+    this._btnEl.classList.add(this._validationConfig.inactiveButtonClass);
+    this._btnEl.disabled = true;
   }
 
-  _activateBtn(btnEl) {
-    btnEl.classList.remove(this._mestoSelectors.inactiveButtonClass);
-    btnEl.disabled = false;
+  _activateBtn() {
+    this._btnEl.classList.remove(this._validationConfig.inactiveButtonClass);
+    this._btnEl.disabled = false;
   }
 
-  _toggleBtn(inputList, btnEl) {
-    if (this._hasInvalidInput(inputList)) {
-      this._disableBtn(btnEl);
+  _toggleBtn() {
+    if (this._hasInvalidInput()) {
+      this._disableBtn();
     } else {
-      this._activateBtn(btnEl);
+      this._activateBtn();
     }
   }
 
-  _setEventListeners(formEl) {
-    const inputList = Array.from(formEl.querySelectorAll(this._mestoSelectors.inputSelector));
-    const btnEl = formEl.querySelector(this._mestoSelectors.submitButtonSelector);
-
-    formEl.addEventListener('reset', () => {
-      this._disableBtn(btnEl);
+  _setEventListeners() {
+    this._formEl.addEventListener('reset', () => {
+      this._disableBtn();
     });
 
-    this._toggleBtn(inputList, btnEl);
+    this._toggleBtn();
 
-    inputList.forEach(inputEl => {
+    this._inputList.forEach((inputEl) => {
       inputEl.addEventListener('input', () => {
         this._checkInputValidity(inputEl);
-        this._toggleBtn(inputList, btnEl);
+        this._toggleBtn();
       });
     });
   }
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._mestoSelectors.formSelector));
-
-    formList.forEach(formEl => {
-      this._setEventListeners(formEl);
-    });
+    this._setEventListeners();
   }
 
-  revalidateForm(formEl) {
-    const inputList = Array.from(formEl.querySelectorAll(this._mestoSelectors.inputSelector));
-    const btnEl = formEl.querySelector(this._mestoSelectors.submitButtonSelector);
-
-    this._toggleBtn(inputList, btnEl);
-    inputList.forEach(inputEl => {
+  revalidateForm() {
+    this._toggleBtn();
+    this._inputList.forEach((inputEl) => {
       this._hideError(inputEl);
     });
   }

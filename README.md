@@ -7,7 +7,7 @@
 
 
 ## Стек технологий
-HTML, CSS, БЭМ, JS
+HTML, CSS, БЭМ, JS, ООП
 
 **Сайт на GitHub Pages**
 

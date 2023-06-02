@@ -3,7 +3,7 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
 // Конфигурация селекторов для валидации формы
-const mestoSelectors = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input-item',
   submitButtonSelector: '.popup__save-button',
@@ -24,16 +24,21 @@ const btnEdit = document.querySelector('.profile__edit-button');
 const btnAdd = document.querySelector('.profile__add-button');
 const popupAdd = document.querySelector('.popup-add');
 const popupEdit = document.querySelector('.popup-edit');
-const formProfile = document.forms['editProfile'];
-const formCard = document.forms['editCard'];
 const area = document.querySelector('.area');
 const modalImg = popupInputCard.querySelector('img');
 const modalText = popupInputCard.querySelector('.popup__card-title');
 const popups = document.querySelectorAll('.popup');
 const popupsList = Array.from(popups);
 
-// Создаем экземпляр класса FormValidator
-const formValidator = new FormValidator(mestoSelectors);
+// Создаем экземпляр класса FormValidator для формы редактирования профиля
+const formProfile = document.forms['editProfile'];
+const formValidatorProfile = new FormValidator(validationConfig, formProfile);
+formValidatorProfile.enableValidation();
+
+// Создаем экземпляр класса FormValidator для формы добавления карточек
+const formCard = document.forms['editCard'];
+const formValidatorCard = new FormValidator(validationConfig, formCard);
+formValidatorCard.enableValidation();
 
 // Функция закрытия попапа
 const closePopup = (popup) => {
@@ -67,10 +72,11 @@ function fillProfileForm() {
 
 // Обработчик клика на кнопку редактирования профиля
 btnEdit.addEventListener('click', function () {
-  formValidator.enableValidation();
+  formValidatorProfile.revalidateForm();
   fillProfileForm();
   openPopup(popupEdit);
 });
+
 
 // Обработчик «отправки» формы редактирования профиля
 function submitFormEdit(evt) {
@@ -91,6 +97,7 @@ function submitFormAdd(evt) {
   area.prepend(cardElement);
   evt.target.reset();
   closePopup(popupAdd);
+  formValidatorCard.revalidateForm();
 }
 
 // Прикрепляем обработчик к форме добавления карточек
@@ -106,12 +113,12 @@ function openPopupWithImage(name, link) {
 
 // Добавляем обработчики для кнопок редактирования и добавления
 btnEdit.addEventListener('click', function () {
-  formValidator.enableValidation();
+  formValidatorProfile.revalidateForm();
   openPopup(popupEdit);
 });
 
 btnAdd.addEventListener('click', function () {
-  formValidator.enableValidation();
+  formValidatorCard.revalidateForm();
   openPopup(popupAdd);
 });
 
@@ -130,5 +137,9 @@ function closePopupOnEsc(evt) {
   }
 }
 
-// Включаем валидацию форм
-formValidator.enableValidation();
+
+// Включаем валидацию формы редактирования профиля
+formValidatorProfile.enableValidation();
+
+// Включаем валидацию формы добавления карточек
+formValidatorCard.enableValidation();
