@@ -35,6 +35,11 @@ const formProfile = document.forms['editProfile'];
 const formValidatorProfile = new FormValidator(validationConfig, formProfile);
 formValidatorProfile.enableValidation();
 
+const create = (cardData) => {
+    const card = new Card(cardData, '#card-template', openPopupWithImage);
+    return card.generateCard();
+}
+
 // Создаем экземпляр класса FormValidator для формы добавления карточек
 const formCard = document.forms['editCard'];
 const formValidatorCard = new FormValidator(validationConfig, formCard);
@@ -92,8 +97,7 @@ formProfile.addEventListener('submit', submitFormEdit);
 // Обработчик для добавления карточек
 function submitFormAdd(evt) {
   evt.preventDefault();
-  const card = new Card({ name: titleInputCard.value, link: linkInputCard.value }, '#card-template', openPopupWithImage);
-  const cardElement = card.generateCard();
+  const cardElement = create({ name: titleInputCard.value, link: linkInputCard.value });
   area.prepend(cardElement);
   evt.target.reset();
   closePopup(popupAdd);
@@ -124,8 +128,7 @@ btnAdd.addEventListener('click', function () {
 
 // Генерируем первоначальные карточки из массива initialCards
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, '#card-template', openPopupWithImage);
-  const cardElement = card.generateCard();
+  const cardElement = create(cardData);
   area.append(cardElement);
 });
 
