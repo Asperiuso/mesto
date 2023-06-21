@@ -9,9 +9,6 @@
   },
   "author": "Andrew",
   "license": "ISC",
-  "dependencies": {
-    "core-js": "^3.21.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
@@ -25,5 +22,8 @@
     "webpack": "^5.87.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "core-js": "^3.21.0"
   }
 }

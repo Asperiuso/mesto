@@ -16,7 +16,6 @@ const btnAdd = document.querySelector('.profile__add-button');
 
 const formCard = document.forms['editCard'];
 const formProfile = document.forms['editProfile'];
-const area = document.querySelector('.area');
 const formInputName = document.querySelector('.popup__input-item_profile_name');
 const formInputJob = document.querySelector('.popup__input-item_profile_profission');
 
@@ -33,4 +32,4 @@ const titleInputCard = document.querySelector('.popup__input-item_card_title');
 const linkInputCard = document.querySelector('.popup__input-item_card_link');
 const popupInputCard = document.querySelector('.popup-card');*/
 
-export { validationConfig, area, formInputName, formInputJob, btnEdit, btnAdd, formCard, formProfile }
+export { validationConfig, formInputName, formInputJob, btnEdit, btnAdd, formCard, formProfile }

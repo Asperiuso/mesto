@@ -4,10 +4,10 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  renderItems() {
-    this._items.forEach(item => {
-      this._renderedElement = this._renderer(item);
-      this._container.append(this._renderedElement);
+  renderItems(items) {
+    items.forEach(item => {
+      const renderedElement = this._renderer(item);
+      this._container.append(renderedElement);
     });
   }
 

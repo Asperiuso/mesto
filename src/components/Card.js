@@ -10,7 +10,7 @@ export default class Card {
     this._deleteButton = this._element.querySelector('.card__del-button');
     this._cardTitle = this._element.querySelector('.card__title');
   }
-  
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -25,6 +25,7 @@ export default class Card {
 
   _handleDeleteClick() {
     this._element.remove();
+    this._element = null;
   }
 
   _handleImageClick() {
