@@ -14,7 +14,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import initialCards from "../utils/db.js"
+import initialCards from "../utils/db.js";
 
 const formCardValidator = new FormValidator(validationConfig, formCard);
 const formProfileInfoValidator = new FormValidator(validationConfig, formProfile);
@@ -28,11 +28,9 @@ const popupWithImage = new PopupWithImage(".popup-card");
 
 const cardList = new Section(
   {
-    renderer: (item) => {
-      const card = new Card(item, "#card-template", (name, link) => {
-        popupWithImage.open(link, name);
-      });
-      return card.generateCard();
+    renderer: (cardData) => {
+      const card = createCard(cardData.title, cardData.link);
+      cardList.addItem(card);
     }
   },
   '.area'
@@ -40,25 +38,21 @@ const cardList = new Section(
 
 // Генерируем первоначальные карточки из массива initialCards
 initialCards.reverse().forEach((cardData) => {
-  const cardElement = cardList._renderer(cardData);
+  const cardElement = createCard(cardData.title, cardData.link);
   cardList.addItem(cardElement);
 });
 
 const popupNewCard = new PopupWithForm(".popup-add", {
   handleFormSubmit: (formValues) => {
     // Создание новой карточки
-    const { cardTitle, cardLink } = formValues;
-    const cardElement = new Card({ name: cardTitle, link: cardLink }, "#card-template", (name, link) => {
-      popupWithImage.open(link, name);
-    }).generateCard();
-    
+    const cardElement = createCard(formValues.cardTitle, formValues.cardLink);
+
     // Добавление карточки в список
     cardList.addItem(cardElement);
-  
+
     // Закрытие попапа
     popupNewCard.close();
   },
-  
 });
 
 popupNewCard.setEventListeners();
@@ -92,3 +86,10 @@ popupEditProfile.setEventListeners();
 
 formCardValidator.enableValidation();
 formProfileInfoValidator.enableValidation();
+
+function createCard(title, link) {
+  const card = new Card({ name: title, link: link }, "#card-template", (name, link) => {
+    popupWithImage.open(link, name);
+  });
+  return card.generateCard();
+}
