@@ -29,7 +29,7 @@ const popupWithImage = new PopupWithImage(".popup-card");
 const cardList = new Section(
   {
     renderer: (cardData) => {
-      const card = createCard(cardData.title, cardData.link);
+      const card = createCard(cardData.name, cardData.link);
       cardList.addItem(card);
     }
   },
@@ -38,7 +38,7 @@ const cardList = new Section(
 
 // Генерируем первоначальные карточки из массива initialCards
 initialCards.reverse().forEach((cardData) => {
-  const cardElement = createCard(cardData.title, cardData.link);
+  const cardElement = createCard(cardData.name, cardData.link);
   cardList.addItem(cardElement);
 });
 
