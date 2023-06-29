@@ -18,6 +18,8 @@ const formCard = document.forms['editCard'];
 const formProfile = document.forms['editProfile'];
 const formInputName = document.querySelector('.popup__input-item_profile_name');
 const formInputJob = document.querySelector('.popup__input-item_profile_profission');
+const buttonAvatar = document.querySelector('.profile__avatar-edit-button');
+const formAvatar  = document.forms['avatar'];
 
 /*const popupAdd = document.querySelector('.popup-add');
 const popupEdit = document.querySelector('.popup-edit');
@@ -32,4 +34,4 @@ const titleInputCard = document.querySelector('.popup__input-item_card_title');
 const linkInputCard = document.querySelector('.popup__input-item_card_link');
 const popupInputCard = document.querySelector('.popup-card');*/
 
-export { validationConfig, formInputName, formInputJob, btnEdit, btnAdd, formCard, formProfile }
+export { validationConfig, buttonAvatar, formAvatar , formInputName, formInputJob, btnEdit, btnAdd, formCard, formProfile }
