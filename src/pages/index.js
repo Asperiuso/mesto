@@ -45,7 +45,6 @@ const cardList = new Section(
   {
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
-      //console.log(cardElement);
       cardList.addItem(cardElement);
     },
   },
@@ -90,7 +89,6 @@ function createCard(cardData) {
   return card.generateCard();
 }
 
-
 const popupNewCard = new PopupWithForm(".popup-add", {
   handleFormSubmit: (formValues, popupButtonSubmit) => {
     renderLoading(true, popupButtonSubmit, popupButtonSubmit.textContent);
@@ -130,15 +128,20 @@ const popupEditProfile = new PopupWithForm(".popup-edit", {
 
 const confirmPopup = new PopupWithConfirmation(".popup-delete", {
   handleFormSubmit: (card) => {
-    api.deleteCard(card._id)
-      .then(() => {
-        card.delete();
-        confirmPopup.close();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  },
+    confirmPopup.setLoading(true); // Устанавливаем состояние загрузки в true
+  return api
+    .deleteCard(card._id)
+    .then(() => {
+      card.delete();
+      confirmPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      confirmPopup.setLoading(false); // Устанавливаем состояние загрузки в false после завершения операции
+    });
+},
 });
 
 const popupAvatar = new PopupWithForm('.popup-avatar', {
@@ -184,7 +187,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userId = userInfo._id;
 
     profileInfo.setUserInfo(userInfo);
-
+    profileInfo.setUserAvatar(userInfo);
     cardList.renderItems(initialCards);
   })
   .catch((err) => {
@@ -214,4 +217,3 @@ popupAvatar.setEventListeners();
 formCardValidator.enableValidation();
 formProfileInfoValidator.enableValidation();
 formAvatarValidator.enableValidation();
-
