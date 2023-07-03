@@ -14,9 +14,9 @@ export default class Card {
   }
 
   _getElement() {
-    const cardTemplate = document.querySelector(this._selector)
-      .content
-      .querySelector('.card')
+    const cardTemplate = document
+      .querySelector(this._selector)
+      .content.querySelector('.card')
       .cloneNode(true);
 
     return cardTemplate;
@@ -86,11 +86,11 @@ export default class Card {
   }
 
   like() {
-    this._likeButton.classList.add("card__like-button_active");
+    this._likeButton.classList.add('card__like-button_active');
   }
 
   dislike() {
-    this._likeButton.classList.remove("card__like-button_active");
+    this._likeButton.classList.remove('card__like-button_active');
   }
 
   setLikesCount(res) {
@@ -98,7 +98,7 @@ export default class Card {
   }
 
   _handleDeleteClick() {
-     this._deleteCard(this._id);
+    this._deleteCard(this._id);
   }
 
   delete() {

@@ -126,22 +126,22 @@ const popupEditProfile = new PopupWithForm(".popup-edit", {
   },
 });
 
-const confirmPopup = new PopupWithConfirmation(".popup-delete", {
-  handleFormSubmit: (card) => {
-    confirmPopup.setLoading(true); // Устанавливаем состояние загрузки в true
-  return api
+const confirmPopup = new PopupWithConfirmation(".popup-delete");
+
+confirmPopup.setFormSubmitHandler((card) => {
+  confirmPopup.setLoading(true);
+  api
     .deleteCard(card._id)
     .then(() => {
-      card.delete();
+      cardList.removeItem(card._element); // Удаляем карточку из DOM
       confirmPopup.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
-      confirmPopup.setLoading(false); // Устанавливаем состояние загрузки в false после завершения операции
+      confirmPopup.setLoading(false);
     });
-},
 });
 
 const popupAvatar = new PopupWithForm('.popup-avatar', {
@@ -188,7 +188,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
     profileInfo.setUserInfo(userInfo);
     profileInfo.setUserAvatar(userInfo);
-    cardList.renderItems(initialCards);
+    cardList.renderItems(initialCards.reverse());
   })
   .catch((err) => {
     console.error(err);

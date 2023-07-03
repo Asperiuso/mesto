@@ -1,15 +1,12 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithConfirmation extends Popup {
-  constructor(popupSelector, { handleFormSubmit }) {
+  constructor(popupSelector) {
     super(popupSelector);
-    this._handleFormSubmit = handleFormSubmit;
-    this._isLoading = false; 
     this._submitButton = this._popup.querySelector(".popup__save-button");
   }
 
   setLoading(isLoading) {
-    this._isLoading = isLoading;
     if (isLoading) {
       this._submitButton.textContent = "Удаление...";
     } else {
@@ -20,27 +17,21 @@ export default class PopupWithConfirmation extends Popup {
   open(card) {
     super.open();
     this._cardElement = card;
-    this._cardId = card._id;
+    this._cardId = card.id;
+  }
+
+  setFormSubmitHandler(handleFormSubmit) {
+    this._handleFormSubmit = handleFormSubmit;
   }
 
   _handleSubmit = (evt) => {
     evt.preventDefault();
 
     if (this._isLoading) {
-      return; 
+      return;
     }
 
-    this.setLoading(true); 
-    this._handleFormSubmit(this._cardElement, this._cardId)
-      .then(() => {
-        this.close();
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
-        this.setLoading(false);
-      });
+    this._handleFormSubmit(this._cardElement, this._cardId);
   };
 
   setEventListeners() {

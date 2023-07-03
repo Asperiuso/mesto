@@ -6,11 +6,15 @@ export default class Section {
 
   renderItems(cardsList) {
     cardsList.forEach(item => {
-      this._renderer(item)
-    })
+      this._renderer(item);
+    });
   }
-  
+
   addItem(element) {
-    this._container.append(element);
+    this._container.prepend(element);
+  }
+
+  removeItem(element) {
+    element.remove();
   }
 }
