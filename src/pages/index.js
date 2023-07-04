@@ -83,7 +83,7 @@ function createCard(cardData) {
     },
     () => {
       confirmPopup.open(card)
-    }
+    },
   );
 
   return card.generateCard();
@@ -133,7 +133,7 @@ confirmPopup.setFormSubmitHandler((card) => {
   api
     .deleteCard(card._id)
     .then(() => {
-      cardList.removeItem(card._element); // Удаляем карточку из DOM
+      card.delete(); 
       confirmPopup.close();
     })
     .catch((err) => {
